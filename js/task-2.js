@@ -1,5 +1,5 @@
 function makeArray(firstArray, secondArray, maxLength) {
-  const massFirstAndTwo = [...firstArray, secondArray];
+  const massFirstAndTwo = [...firstArray, ...secondArray];
   if (massFirstAndTwo.length <= maxLength) {
     return firstArray.concat(secondArray);
   } else {
