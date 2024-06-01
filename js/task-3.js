@@ -1,85 +1,37 @@
-// Напиши стрілочну функцію sortByDescendingFriendCount(users) , яка прийматиме один параметр users — масив об’єктів користувачів.
+// Напиши клас StringBuilder, який приймає один параметр initialValue — довільний рядок, який записується у приватну властивість value об'єкта, що створюється.
 
-// Функція має повертати масив усіх користувачів, відсортованих за спаданням кількостій їх друзів (властивість friends).
+// Оголоси наступні методи класу:
 
-// Візьми код нижче і встав після оголошення своєї функції для перевірки коректності її роботи. У консоль будуть виведені результати її роботи.
-const sortByDescendingFriendCount = (users) => {
-  return users.toSorted((a, b) => b.friends.length - a.friends.length);
-};
+// getValue() — повертає поточне значення приватної властивості value.
+// padEnd(str) — отримує параметр str (рядок) і додає його в кінець значення приватної властивості value об'єкта, який викликає цей метод.
+// padStart(str) — отримує параметр str (рядок) і додає його на початок значення приватної властивості value об'єкта, який викликає цей метод.
+// padBoth(str) — отримує параметр str (рядок) і додає його на початок і в кінець значення приватної властивості value об'єкта, який викликає цей метод.
+// Візьми код нижче з ініціалізацією екземпляра й викликами методів і встав його після оголошення класу для перевірки коректності роботи. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
 
-console.log(
-  sortByDescendingFriendCount([
-    {
-      name: "Moore Hensley",
-      friends: ["Sharron Pace"],
-      gender: "male",
-    },
-    {
-      name: "Sharlene Bush",
-      friends: ["Briana Decker", "Sharron Pace"],
-      gender: "female",
-    },
-    {
-      name: "Ross Vazquez",
-      friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
-      gender: "male",
-    },
-    {
-      name: "Elma Head",
-      friends: ["Goldie Gentry", "Aisha Tran"],
-      gender: "female",
-    },
-    {
-      name: "Carey Barr",
-      friends: ["Jordan Sampson", "Eddie Strong"],
-      gender: "male",
-    },
-    {
-      name: "Blackburn Dotson",
-      friends: ["Jacklyn Lucas", "Linda Chapman"],
-      gender: "male",
-    },
-    {
-      name: "Sheree Anthony",
-      friends: ["Goldie Gentry", "Briana Decker"],
-      gender: "female",
-    },
-  ])
-);
-// [
-//   {
-//     name: "Ross Vazquez",
-//     friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Sharlene Bush",
-//     friends: ["Briana Decker", "Sharron Pace"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Elma Head",
-//     friends: ["Goldie Gentry", "Aisha Tran"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Carey Barr",
-//     friends: ["Jordan Sampson", "Eddie Strong"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Blackburn Dotson",
-//     friends: ["Jacklyn Lucas", "Linda Chapman"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Sheree Anthony",
-//     friends: ["Goldie Gentry", "Briana Decker"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Moore Hensley",
-//     friends: ["Sharron Pace"],
-//     gender: "male"
-//   }
-// ]
+class StringBuilder {
+  #value;
+  constructor(initialValue) {
+    this.#value = initialValue;
+  }
+  getValue() {
+    return this.#value;
+  }
+  padEnd(str) {
+    this.#value += " " + str;
+  }
+  padStart(str) {
+    this.#value = str + " " + this.#value;
+  }
+  padBoth(str) {
+    this.#value = str + " " + this.#value + " " + str;
+  }
+}
+
+const builder = new StringBuilder(".");
+console.log(builder.getValue()); // "."
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="
