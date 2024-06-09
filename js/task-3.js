@@ -1,37 +1,19 @@
-// Напиши клас StringBuilder, який приймає один параметр initialValue — довільний рядок, який записується у приватну властивість value об'єкта, що створюється.
+// Напиши скрипт, який під час набору тексту в інпуті input#name-input (подія input) підставляє його поточне значення в span#name-output як ім’я для привітання. Обов’язково очищай значення в інпуті по краях від пробілів . Якщо інпут порожній або містить лише пробіли, то замість імені у спан має підставлятися рядок "Anonymous".
 
-// Оголоси наступні методи класу:
+// <input type="text" id="name-input" placeholder="Please enter your name" />
+// <h1>Hello, <span id="name-output">Anonymous</span>!</h1>
 
-// getValue() — повертає поточне значення приватної властивості value.
-// padEnd(str) — отримує параметр str (рядок) і додає його в кінець значення приватної властивості value об'єкта, який викликає цей метод.
-// padStart(str) — отримує параметр str (рядок) і додає його на початок значення приватної властивості value об'єкта, який викликає цей метод.
-// padBoth(str) — отримує параметр str (рядок) і додає його на початок і в кінець значення приватної властивості value об'єкта, який викликає цей метод.
-// Візьми код нижче з ініціалізацією екземпляра й викликами методів і встав його після оголошення класу для перевірки коректності роботи. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
+// На що буде звертати увагу ментор при перевірці:
 
-class StringBuilder {
-  #value;
-  constructor(initialValue) {
-    this.#value = initialValue;
-  }
-  getValue() {
-    return this.#value;
-  }
-  padEnd(str) {
-    this.#value += " " + str;
-  }
-  padStart(str) {
-    this.#value = str + " " + this.#value;
-  }
-  padBoth(str) {
-    this.#value = str + " " + this.#value + " " + str;
-  }
-}
+// На елементі input#name-input прослуховується подія input
+// Під час набору тексту в інпуті його поточне значення підставляється в span#name-output як ім’я для привітання
+// Значення в інпуті очищене від пробілів по краях
+// Якщо інпут порожній або містить лише пробіли, то замість імені у спан має підставлятися рядок "Anonymous"
 
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
+const textInput = document.querySelector("#name-input");
+console.log(textInput);
+const output = document.querySelector("#name-output");
+textInput.addEventListener("input", (event) => {
+  const valuePlus = event.currentTarget.value.trim();
+  output.textContent = valuePlus ? valuePlus : "Anonymous";
+});
